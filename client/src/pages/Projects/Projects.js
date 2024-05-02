@@ -36,9 +36,9 @@ const Projects = () => {
                 </div>
                 <div className="card-body text-center">
                   <div className="ad-title m-auto">
-                    <h6 className="text-uppercase">
-                      Techinfoyt Shopping Website
-                    </h6>
+                    <h5 className="text-uppercase">
+                       Shopping Website
+                    </h5>
                   </div>
                   <a
                     className="ad-btn"
@@ -65,7 +65,7 @@ const Projects = () => {
                 </div>
                 <div className="card-body text-center">
                   <div className="ad-title m-auto">
-                    <h5 className="text-uppercase">Techinfoyt Coding App</h5>
+                    <h5 className="text-uppercase"> Coding App</h5>
                   </div>
                   <a
                     className="ad-btn"
@@ -93,7 +93,7 @@ const Projects = () => {
                 </div>
                 <div className="card-body text-center">
                   <div className="ad-title m-auto">
-                    <h5 className="text-uppercase">Techinfoyt Job Portal</h5>
+                    <h5 className="text-uppercase">Job Portal</h5>
                   </div>
                   <a className="ad-btn" href="view">
                     View
