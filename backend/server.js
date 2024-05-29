@@ -68,7 +68,7 @@ const transporter = nodemailer.createTransport({
 //   });
 // });
 
-const sendMail = require("./controllers/portfolioContoller")
+const sendMail = require("./controllers/portfolioContoller.js")
 
 app.get("/sendmail", (req, res) => {
   res.send("I am a server");
