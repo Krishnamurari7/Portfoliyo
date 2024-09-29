@@ -5,33 +5,47 @@ import "./Contact.css";
 import Rotate from "react-reveal/Rotate";
 import LightSpeed from "react-reveal/LightSpeed";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
+// import { Bounce } from 'react-reveal';
+
 const Contact = () => {
   const [name, setname] = useState("");
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
+  const [message, setMessage] = useState("");
 
   //handle submit button
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!name || !email || !msg) {
+      if (!name || !email || !message) {
         toast.error("PLease Provide all fields");
+        return;
       }
-      const res = await axios.post("/api/v1/portfolio/sendEmail", {
+      // const res = await axios.post("/api/v1/portfolio/sendEmail", {
+      //   name,
+      //   email,
+      //   msg,
+      // });
+      const res = await axios.post('http://localhost:5000/send', {
         name,
         email,
-        msg,
+        message,
       });
       //validation success
       if (res.data.success) {
         toast.success(res.data.message);
-        setname("");
-        setEmail("");
-        setMsg("");
-      } else {
+        
+        // setname("");
+        // setEmail("");
+        // setMsg("");
+        setname('');
+        setEmail('');
+        setMessage('');
+      } 
+      else {
         toast.error(res.data.message);
       }
     } catch (error) {
+      toast.error("An error occurred. Please try again.");
       console.log(error);
     }
   };
@@ -76,40 +90,53 @@ const Contact = () => {
                       <small className="or text-center">OR</small>
                       <div className="line" />
                     </div>
+                    {/* <form className="contact-form" onSubmit={handleSubmit}></form> */}
                     <div className="row px-3">
+                    <label htmlFor="name">Name</label>
                       <input
                         type="text"
                         name="name"
+                        id="name"
                         placeholder="Enter your Name"
                         className="mb-3"
                         value={name}
                         onChange={(e) => setname(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="row px-3">
+                    <label htmlFor="email">Email</label>
                       <input
                         type="email"
-                        name="email"
+                        // name="email"
+                        id="email"
                         placeholder="Enter Your Email Address"
                         className="mb-3"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="row px-3">
+                    <label htmlFor="message">Message</label>
                       <textarea
-                        type="text"
-                        name="msg"
+                        // type="text"
+                        // name="msg"
+                        id="message"
+                        value={message}
                         placeholder="Write your message"
                         className="mb-3"
-                        value={msg}
-                        onChange={(e) => setMsg(e.target.value)}
+                        // value={msg}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="row px-3">
-                      <button className="button" onClick={handleSubmit}>
+                      {/* <button className="button" onClick={handleSubmit}>
                         SEND MESSAGE
-                      </button>
+                      </button> */}
+                       <button className="button" onClick={handleSubmit} type="submit">Send Message</button>
+                       {/* <p className="status">{status}</p> */}
                     </div>
                   </div>
                 </div>
