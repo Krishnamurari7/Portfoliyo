@@ -16,7 +16,20 @@ function App() {
   return (
     <>
       <div id={theme}>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
+        <ToastContainer
+           position="top-center"
+           autoClose={5000}
+           hideProgressBar={false}
+           newestOnTop={false}
+           closeOnClick
+           rtl={false}
+           pauseOnFocusLoss
+           draggable
+           pauseOnHover
+           theme="light"
+          //  transition: Bounce
+          />
         <MobileNav />
         <Layout />
         <div className="container">
