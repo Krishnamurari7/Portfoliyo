@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "../../context/ThemeContext";
 import Typewriter from "typewriter-effect";
-import Resume from "../../assets/docs/Krishna murari CV.pdf";
+// import Resume from "../../assets/docs/Krishna murari CV.pdf";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import "./home.css";
 import Fade from "react-reveal/Fade";
@@ -50,7 +50,7 @@ const Home = () => {
               >
                 Hire Me
               </a>
-              <a className="btn btn-cv" href={Resume} download="Krishna murari CV.pdf">
+              <a className="btn btn-cv" href="https://drive.google.com/file/d/14nwOLj2TVR24J8Nk3x3sGL2ayKZiUhDt/view?usp=drive_link" download="Krishna murari CV.pdf">
                 My Resume
               </a>
             </div>
