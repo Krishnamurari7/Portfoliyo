@@ -93,9 +93,14 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
     
-  } catch (error: any) {
-    console.error('Contact API error:', error);
-    
+  } catch (error: unknown) {
+    // Log a readable error message while keeping strong typing
+    if (error instanceof Error) {
+      console.error('Contact API error:', error.message);
+    } else {
+      console.error('Contact API error:', error);
+    }
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { 
@@ -108,7 +113,10 @@ export async function POST(request: NextRequest) {
     }
     
     // Handle email authentication errors specifically
-    if (error?.code === 'EAUTH' || error?.responseCode === 535) {
+    const maybeAuthError = error as { code?: unknown; responseCode?: unknown } | null;
+    const errorCode = typeof maybeAuthError?.code === 'string' ? maybeAuthError?.code : undefined;
+    const responseCode = typeof maybeAuthError?.responseCode === 'number' ? maybeAuthError?.responseCode : undefined;
+    if (errorCode === 'EAUTH' || responseCode === 535) {
       console.error('Email authentication failed - check EMAIL_USER and EMAIL_PASS in .env.local');
       console.error('Make sure to use Gmail App Password, not regular password');
       
