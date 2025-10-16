@@ -13,7 +13,7 @@ const allProjects: Project[] = [
     title: "E-Commerce Platform",
     slug: { current: "ecommerce-platform" },
     description: "A full-stack e-commerce solution built with Next.js, featuring advanced search, payment integration, and admin dashboard.",
-    image: { asset: { _ref: "image-1", _type: "reference" } },
+    image: { asset: { _ref: "/images/nextjs.png", _type: "reference" } },
     technologies: ["Next.js", "TypeScript", "Stripe", "Prisma", "PostgreSQL"],
     category: "Web Application",
     featured: true,
