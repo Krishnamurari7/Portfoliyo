@@ -305,7 +305,8 @@ export function AIChatbot() {
                     >
                       <div className="flex items-end space-x-2">
                         <div className="p-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 shadow-lg">
-                          <Bot className="h-4 w-4" />
+                          {/* <Bot className="h-4 w-4" /> */}
+                          <img src="/images/krishna.png" alt="Krishna" className="object-cover rounded-full h-10 w-10" />
                         </div>
                         <div className="px-4 py-3 rounded-2xl rounded-bl-md bg-white/90 dark:bg-gray-800/90 border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
                           <div className="flex space-x-1">
