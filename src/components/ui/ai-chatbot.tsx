@@ -76,7 +76,7 @@ export function AIChatbot() {
       const responses = {
         "hello": "Hello! I'm your AI assistant. I can help you learn more about my skills, experience, and projects. What would you like to know?",
         "skills": "Krishna Murari is skilled in React, Next.js, TypeScript, Node.js, Python, and modern web technologies. He specializes in full-stack development with a focus on creating exceptional user experiences.",
-        "projects": "Krishna has worked on several impressive projects including an E-Commerce Platform, AI-Powered Dashboard, and Mobile Banking App. You can find more details on the Projects page.",
+        "projects": "Krishna has worked on several impressive projects including an E-Commerce Platform, car browser game, and a hospital management system. You can find more details on his GitHub profile.",
         "contact": "You can reach Krishna Murari at krishna74880908@gmail.com or connect with him on GitHub and LinkedIn. He's always open to discussing new opportunities.",
         "experience": "Krishna Murari is a Full-Stack Developer with 1+ years of experience building scalable web applications and digital solutions.",
         "about": "Krishna Murari is a passionate Full-Stack Developer from India with 1+ years of experience. He loves creating exceptional user experiences and solving complex problems.",
@@ -269,7 +269,7 @@ export function AIChatbot() {
                           {message.role === "user" ? (
                             <User className="h-4 w-4" />
                           ) : (
-                            <Bot className="h-4 w-4" />
+                            <img src="/images/krishna.png" alt="Krishna" className="object-cover rounded-full h-20 w-20" />
                           )}
                         </motion.div>
                         <motion.div
