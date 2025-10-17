@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://krishnamurari.com",
+    url: "https://krishna-murari-portfolio.vercel.app",
     title: "Krishna Murari - Full-Stack Developer",
     description: "Full-Stack Developer passionate about building innovative solutions and creating exceptional user experiences.",
     siteName: "Krishna Murari Portfolio",
