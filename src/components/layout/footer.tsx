@@ -139,7 +139,7 @@ export function Footer() {
             © {currentYear} Krishna Murari. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm flex items-center mt-2 sm:mt-0">
-            Made with <Heart className="h-4 w-4 mx-1 text-red-500" /> using Next.js
+            Made with <Heart className="h-4 w-4 mx-1 text-red-500" /> using Next.js and tailwindcss.
           </p>
         </motion.div>
       </div>
