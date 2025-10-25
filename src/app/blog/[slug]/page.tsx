@@ -3,6 +3,7 @@
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, Tag, Share2, User } from "lucide-react";
 import { BlogPost } from "@/types";
 import { getBlogPostBySlug, getRelatedPosts } from "@/data/blog";
@@ -16,6 +17,26 @@ interface BlogPostPageProps {
 // Blog posts are now imported from separate files
 
 // Metadata generation moved to layout.tsx for client components
+
+// Utility function to get blog cover image
+const getBlogCoverImage = (post: BlogPost): string => {
+  // If coverImage asset ref starts with /images/, use it directly
+  if (post.coverImage?.asset?._ref?.startsWith('/images/')) {
+    return post.coverImage.asset._ref;
+  }
+  
+  // Map blog post titles to available images in public/images
+  const imageMap: Record<string, string> = {
+    'Building Scalable React Applications with Next.js 14': '/images/nexjs.jpeg',
+    'Future of Web Development: AI Integration': '/images/ai.jpeg',
+    'Mastering TypeScript: Advanced Patterns': '/images/typescript.png',
+    'Responsive UIs with Tailwind CSS and Framer Motion': '/images/tail.png',
+    'Database Design Patterns for Modern Web Apps': '/images/database.jpeg',
+    'Journey from Junior to Senior Developer': '/images/developer.jpeg',
+  };
+  
+  return imageMap[post.title] || '/images/developer.jpeg';
+};
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
@@ -74,8 +95,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Author Info */}
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
-                <User className="h-6 w-6 text-primary" />
+              <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                <Image
+                  src={post.author.image?.asset?._ref?.startsWith('/images/') 
+                    ? post.author.image.asset._ref 
+                    : '/images/krishna.png'}
+                  alt={post.author.name}
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                  onError={(e) => {
+                    // Fallback to gradient if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) {
+                      fallback.style.display = 'flex';
+                    }
+                  }}
+                />
+                {/* Fallback gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style={{ display: 'none' }}>
+                  <User className="h-6 w-6 text-primary" />
+                </div>
               </div>
               <div>
                 <p className="font-semibold">{post.author.name}</p>
@@ -95,10 +137,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center">
-            <span className="text-6xl font-bold text-muted-foreground">
-              {post.title.charAt(0)}
-            </span>
+          <div className="relative aspect-video rounded-xl overflow-hidden">
+            <Image
+              src={getBlogCoverImage(post)}
+              alt={post.coverImage?.alt || post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              onError={(e) => {
+                // Fallback to gradient if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const fallback = target.nextElementSibling as HTMLElement;
+                if (fallback) {
+                  fallback.style.display = 'flex';
+                }
+              }}
+            />
+            {/* Fallback gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style={{ display: 'none' }}>
+              <span className="text-6xl font-bold text-muted-foreground">
+                {post.title.charAt(0)}
+              </span>
+            </div>
           </div>
         </motion.div>
 
@@ -137,11 +198,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 } else if (block._type === "image") {
                   return (
                     <figure key={index} className="my-8">
-                      <img 
-                        src={`/images/${block.asset?._ref || 'placeholder.jpg'}`}
-                        alt={block.alt || "Blog post image"}
-                        className="w-full rounded-lg shadow-lg"
-                      />
+                      <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
+                        <Image
+                          src={`/images/${block.asset?._ref || 'developer.jpeg'}`}
+                          alt={block.alt || "Blog post image"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                          onError={(e) => {
+                            // Fallback to a default image if the specific one fails
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/images/developer.jpeg';
+                          }}
+                        />
+                      </div>
                       {block.caption && (
                         <figcaption className="text-center text-sm text-muted-foreground mt-2 italic">
                           {block.caption}

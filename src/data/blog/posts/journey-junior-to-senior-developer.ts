@@ -159,10 +159,10 @@ export const journeyJuniorToSeniorDeveloper: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-6", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/developer.jpeg", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["opinion"],
   tags: ["Career", "Personal Growth", "Programming", "Advice", "Leadership"],

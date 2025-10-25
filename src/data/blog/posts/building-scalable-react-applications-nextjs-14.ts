@@ -133,10 +133,10 @@ export const buildingScalableReactApplicationsNextjs14: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-1", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/nexjs.jpeg", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["web-development"],
   tags: ["React", "Next.js", "JavaScript", "Web Development", "Performance"],

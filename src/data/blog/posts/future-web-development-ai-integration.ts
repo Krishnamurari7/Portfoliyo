@@ -119,10 +119,10 @@ export const futureWebDevelopmentAiIntegration: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-2", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/ai.jpeg", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["web-development", "opinion"],
   tags: ["AI", "Machine Learning", "Web Development", "Future Tech", "Automation"],

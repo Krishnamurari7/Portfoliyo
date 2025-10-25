@@ -184,10 +184,10 @@ export const databaseDesignPatternsModernWebApps: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-5", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/database.jpeg", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["web-development", "tutorial"],
   tags: ["Database", "PostgreSQL", "MongoDB", "Backend", "Architecture", "Performance"],

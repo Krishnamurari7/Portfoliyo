@@ -139,10 +139,10 @@ export const responsiveUisTailwindFramerMotion: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-4", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/tail.png", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["design", "tutorial"],
   tags: ["Tailwind CSS", "Framer Motion", "UI/UX", "CSS", "Animation", "Responsive Design"],

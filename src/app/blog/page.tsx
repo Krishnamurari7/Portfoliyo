@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowRight, Tag, Mail, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { BlogPost } from "@/types";
 import { blogPosts, getCategories } from "@/data/blog";
@@ -26,6 +27,26 @@ const itemVariants = {
 
 // Categories are now imported from the data layer
 const categories = getCategories();
+
+// Utility function to get blog cover image
+const getBlogCoverImage = (post: BlogPost): string => {
+  // If coverImage asset ref starts with /images/, use it directly
+  if (post.coverImage?.asset?._ref?.startsWith('/images/')) {
+    return post.coverImage.asset._ref;
+  }
+  
+  // Map blog post titles to available images in public/images
+  const imageMap: Record<string, string> = {
+    'Building Scalable React Applications with Next.js 14': '/images/nexjs.jpeg',
+    'Future of Web Development: AI Integration': '/images/ai.jpeg',
+    'Mastering TypeScript: Advanced Patterns': '/images/typescript.png',
+    'Responsive UIs with Tailwind CSS and Framer Motion': '/images/tail.png',
+    'Database Design Patterns for Modern Web Apps': '/images/database.jpeg',
+    'Journey from Junior to Senior Developer': '/images/developer.jpeg',
+  };
+  
+  return imageMap[post.title] || '/images/developer.jpeg';
+};
 
 
 export default function BlogPage() {
@@ -151,10 +172,29 @@ export default function BlogPage() {
           {featured ? (
             <motion.div variants={itemVariants} className="rounded-2xl border border-border/60 bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 overflow-hidden shadow-sm">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                <div className="aspect-video lg:aspect-auto bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <span className="text-6xl font-bold text-muted-foreground">
-                    {featured.title.charAt(0)}
-                  </span>
+                <div className="relative aspect-video lg:aspect-auto overflow-hidden">
+                  <Image
+                    src={getBlogCoverImage(featured)}
+                    alt={featured.coverImage?.alt || featured.title}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                    onError={(e) => {
+                      // Fallback to gradient if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) {
+                        fallback.style.display = 'flex';
+                      }
+                    }}
+                  />
+                  {/* Fallback gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style={{ display: 'none' }}>
+                    <span className="text-6xl font-bold text-muted-foreground">
+                      {featured.title.charAt(0)}
+                    </span>
+                  </div>
                 </div>
                 <div className="p-8">
                   <div className="flex items-center space-x-4 mb-4">
@@ -218,10 +258,29 @@ export default function BlogPage() {
                 whileHover={{ y: -3 }}
                 className="group rounded-2xl border border-border/60 bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 overflow-hidden shadow-sm transition-all"
               >
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-muted-foreground">
-                    {post.title.charAt(0)}
-                  </span>
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={getBlogCoverImage(post)}
+                    alt={post.coverImage?.alt || post.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onError={(e) => {
+                      // Fallback to gradient if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) {
+                        fallback.style.display = 'flex';
+                      }
+                    }}
+                  />
+                  {/* Fallback gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center" style={{ display: 'none' }}>
+                    <span className="text-4xl font-bold text-muted-foreground">
+                      {post.title.charAt(0)}
+                    </span>
+                  </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center space-x-4 mb-3">

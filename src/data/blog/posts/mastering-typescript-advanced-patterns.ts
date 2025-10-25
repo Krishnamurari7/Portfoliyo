@@ -129,10 +129,10 @@ export const masteringTypescriptAdvancedPatterns: BlogPost = {
       }
     ]
   },
-  coverImage: { asset: { _ref: "blog-3", _type: "reference" } },
+  coverImage: { asset: { _ref: "/images/typescript.png", _type: "reference" } },
   author: {
     name: "Krishna Murari",
-    image: { asset: { _ref: "author-1", _type: "reference" } }
+    image: { asset: { _ref: "/images/krishna.png", _type: "reference" } }
   },
   categories: ["tutorial"],
   tags: ["TypeScript", "JavaScript", "Programming", "Tutorial", "Advanced"],
