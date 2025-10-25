@@ -82,7 +82,7 @@ const allProjects: Project[] = [
     category: "Data Visualization",
     featured: false,
     githubUrl: "https://github.com/Krishnamurari7/resturent",
-    liveUrl: "https://weather-analytics-demo.com",
+    liveUrl: "https://Smbrothers.online",
     startDate: "2024-05-01",
     status: "completed",
     _createdAt: "2024-05-01T00:00:00Z",
